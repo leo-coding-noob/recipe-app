@@ -1,0 +1,131 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Body */
+body {
+    background: #f4f6f8;
+    color: #333;
+    padding: 20px;
+}
+
+/* Header */
+header {
+    background: #2c3e50;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    margin-bottom: 8px;
+}
+
+nav a {
+    color: #f1f1f1;
+    margin-right: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main */
+main {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Search */
+#searchInput {
+    width: 100%;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Recipe List */
+#recipeList li {
+    list-style: none;
+    padding: 12px;
+    margin-bottom: 10px;
+    background: #f9f9f9;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#recipeList a {
+    font-weight: bold;
+    color: #2c3e50;
+    text-decoration: none;
+    flex: 1;
+}
+
+#recipeList a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.favBtn {
+    background: #f1c40f;
+}
+
+.favBtn:hover {
+    background: #d4ac0d;
+}
+
+a button {
+    background: #3498db;
+    color: white;
+}
+
+a button:hover {
+    background: #2c80b4;
+}
+
+a[href*="delete"] button {
+    background: #e74c3c;
+}
+
+a[href*="delete"] button:hover {
+    background: #c0392b;
+}
+
+/* Favorites */
+h3 {
+    margin-top: 30px;
+}
+
+#favoritesList li {
+    list-style: none;
+    padding: 8px;
+    background: #eef;
+    margin-bottom: 6px;
+    border-radius: 5px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #777;
+}
