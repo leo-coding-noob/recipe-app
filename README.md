@@ -24,10 +24,11 @@ The system allows users to add, edit, delete, and view recipes using CRUD operat
 3. Copy project folder to `htdocs`
 4. Import the database using phpMyAdmin
 5. Open browser and visit:
-   http://localhost/recipe-app/
+   [http://localhost/recipe-app/](http://localhost/recipe-app/php/index.php)
 
 ## Author
 Saurav Bhandari
 Rusran Gopali
 Leo Coding Noob (BCA 4th Semester)
+
 
