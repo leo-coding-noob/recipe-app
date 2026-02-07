@@ -15,17 +15,24 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Recipe App</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <!-- <link rel="stylesheet" href="../css/style.css"> -->
+     <link rel="stylesheet" href="../css/style.css?v=2">
+     <link rel="stylesheet" href="../css/favorites.css?v=2">
+    
 </head>
 <body>
 
 <header>
     <h1>My Recipe App</h1>
     <nav>
-        <a href="index.php">Home</a> |
-        <a href="add.php">Add Recipe</a> |
-        <span>Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</span>
-        <a href="logout.php">Logout</a>
+        <div class="nav-left">
+            <a href="index.php">Home</a> |
+            <a href="add.php">Add Recipe</a>
+        </div>
+        <div class="user-info">
+            <span class="welcome-text">Welcome, <?= htmlspecialchars($_SESSION['username']) ?>!</span>
+            <a href="logout.php" class="logout-btn">Logout</a>
+        </div>
     </nav>
 </header>
 
@@ -35,56 +42,83 @@ $result = $conn->query($sql);
     <!-- Search bar -->
     <input type="text" id="searchInput" placeholder="Search recipes...">
 
-    <ul id="recipeList">
-        <?php if($result->num_rows > 0): ?>
-            <?php while($row = $result->fetch_assoc()): ?>
-                <li style="display:flex; gap:15px; align-items:center;">
-                    
-                    <!-- Recipe Image -->
-                    <?php if(!empty($row['image'])): ?>
-                        <img 
-                            src="../uploads/<?= htmlspecialchars($row['image']) ?>" 
-                            alt="Recipe Image"
-                            style="width:100px;height:80px;object-fit:cover;border-radius:6px;"
-                        >
-                    <?php else: ?>
-                        <div style="width:100px;height:80px;background:#ddd;border-radius:6px;
-                                    display:flex;align-items:center;justify-content:center;font-size:12px;">
-                            No Image
-                        </div>
-                    <?php endif; ?>
+   <ul id="recipeList">
+    <?php if($result->num_rows > 0): ?>
+        <?php while($row = $result->fetch_assoc()): ?>
+            <li>
+                
+                <!-- Recipe Image -->
+                <?php if(!empty($row['image'])): ?>
+                    <img 
+                        src="../uploads/<?= htmlspecialchars($row['image']) ?>" 
+                        alt="Recipe Image"
+                    >
+                <?php else: ?>
+                    <div>No Image</div>
+                <?php endif; ?>
 
-                    <!-- Recipe Title -->
-                    <a href="view.php?id=<?= $row['id'] ?>" style="flex:1;">
-                        <?= htmlspecialchars($row['title']) ?>
-                    </a>
+                <!-- Recipe Title -->
+                <a href="view.php?id=<?= $row['id'] ?>">
+                    <?= htmlspecialchars($row['title']) ?>
+                </a>
 
-                    <!-- Buttons -->
+                <!-- Buttons -->
+                <div class="recipe-buttons">
                     <button class="favBtn">Add to Favorites</button>
-
                     <a href="edit.php?id=<?= $row['id'] ?>">
-                        <button>Edit</button>
+                        <button class="edit-btn">Edit</button>
                     </a>
-
                     <a href="delete.php?id=<?= $row['id'] ?>"
-                       onclick="return confirm('Are you sure you want to delete this recipe?');">
-                        <button>Delete</button>
+                       onclick="return confirm('Delete this recipe?');">
+                        <button class="delete-btn">Delete</button>
                     </a>
+                </div>
 
-                </li>
-            <?php endwhile; ?>
-        <?php else: ?>
-            <li>No recipes found.</li>
-        <?php endif; ?>
-    </ul>
+            </li>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <li>No recipes found.</li>
+    <?php endif; ?>
+</ul>
 
-    <h3>My Favorites:</h3>
-    <ul id="favoritesList"></ul>
+
+<!-- favorite -->
+<h3 class="favorites-heading">⭐ My Favorites</h3>
+<div class="favorites-container" id="favoritesList">
+    <!-- Favorites will be added by JavaScript -->
+</div>
 </main>
 
-<footer>
-    <p>&copy; 2026 Recipe App</p>
+
+    <footer class="recipe-footer">
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h3>Recipe App</h3>
+            <p class="footer-tagline">Cook, save, share your favorite recipes.</p>
+        </div>
+        
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/add-recipe">Add Recipe</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p class="contact-email">
+                Email: <a href="mailto:contact@recipeapp.com">contact@recipeapp.com</a>
+            </p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2026 Recipe App. Made with <span class="heart">❤️</span></p>
+    </div>
 </footer>
+
 
 <script src="../js/script.js"></script>
 </body>

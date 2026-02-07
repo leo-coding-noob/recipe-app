@@ -9,27 +9,42 @@ let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 const favoritesList = document.getElementById("favoritesList");
 function renderFavorites() {
     favoritesList.innerHTML = "";
+    
+    if (favorites.length === 0) {
+        const emptyMsg = document.createElement("div");
+        emptyMsg.className = "empty-message";
+        emptyMsg.textContent = "No favorites yet. Add recipes to favorites!";
+        favoritesList.appendChild(emptyMsg);
+        return;
+    }
+    
     favorites.forEach(recipe => {
-        const li = document.createElement("li");
-
-        // Create clickable link to recipe
-        const link = document.createElement("a");
-        link.href = `view.php?id=${recipe.id}`;
-        link.textContent = recipe.title;
-        li.appendChild(link);
-
-        // Add Remove button
+        // Create card div
+        const card = document.createElement("div");
+        card.className = "favorite-card";
+        
+        // Create title link
+        const titleLink = document.createElement("a");
+        titleLink.className = "favorite-title";
+        titleLink.href = `view.php?id=${recipe.id}`;
+        titleLink.textContent = recipe.title;
+        
+        // Create remove button
         const removeBtn = document.createElement("button");
+        removeBtn.className = "remove-btn";
         removeBtn.textContent = "Remove";
-        removeBtn.style.marginLeft = "10px";
         removeBtn.addEventListener("click", () => {
             favorites = favorites.filter(fav => fav.id !== recipe.id);
             localStorage.setItem("favorites", JSON.stringify(favorites));
             renderFavorites();
         });
-
-        li.appendChild(removeBtn);
-        favoritesList.appendChild(li);
+        
+        // Add to card
+        card.appendChild(titleLink);
+        card.appendChild(removeBtn);
+        
+        // Add card to container
+        favoritesList.appendChild(card);
     });
 }
 renderFavorites();
