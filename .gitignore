@@ -1,0 +1,7 @@
+﻿uploads/
+.htaccess
+.htpasswd
+*.log
+.vscode/
+.DS_Store
+Thumbs.db
